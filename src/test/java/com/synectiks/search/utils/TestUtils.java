@@ -1,4 +1,4 @@
-package com.synectiks.security.utils;
+package com.synectiks.search.utils;
 
 import java.util.Random;
 

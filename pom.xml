@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>serenity-test</groupId>
-	<artifactId>common-security-rbac-service-bdd-tests</artifactId>
+	<groupId>common-search-service-bdd-tests</groupId>
+	<artifactId>common-search-service-bdd-tests-art</artifactId>
 	<version>0.0.3-SNAPSHOT</version>
 
-	<name>common-security-rbac-service-bdd-tests</name>
+	<name>common-search-service-bdd-tests-nm</name>
 
 	
 	<properties>

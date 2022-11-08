@@ -1,4 +1,4 @@
-package com.synectiks.security.junit.controllers;
+package com.synectiks.search.junit.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,12 +14,14 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 
+import com.synectiks.search.service.entities.Student;
+import com.synectiks.search.testbase.TestBase;
+import com.synectiks.search.utils.TestUtils;
 import com.synectiks.security.entities.Permission;
-import com.synectiks.security.testbase.TestBase;
-import com.synectiks.security.utils.TestUtils;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
+import io.restassured.http.Header;
 import net.serenitybdd.junit.runners.SerenityRunner;
 import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Manual;
@@ -37,26 +39,19 @@ public class PermissionControllerTest extends TestBase{
 	public static String permission_parent="TestTeam _"+TestUtils.getRandomString();
 	public static String description="Team Menu _"+TestUtils.getRandomString();
 	public static Long id;
+	public static int st_id = (int) Math.random();
+	public static String st_name = "Test Student_" + TestUtils.getRandomString();
+	public static float st_fee = 8494.3f;
 
-	@Title("This test will create new permission")
+	@Title("This test add new document in student index name")
 	@Test
 	public void test001() {
-		Permission permission=new Permission();
-		permission.setVersion(version);
-		permission.setName(name);
-		permission.setPermission(permission_parent);
-		permission.setDescription(description);
-		SerenityRest.rest().given()
-		.when()
-		.contentType(ContentType.JSON)
-		.log()
-		.all()
-		.body(permission)
-		.post("/permissions/create")
-		.then()
-		.log()
-		.all()
-		.statusCode(201);
+		Student st = new Student();
+		st.setId(st_id);
+		st.setName(st_name);
+		st.setFee(st_fee);
+		SerenityRest.rest().given().when().contentType(ContentType.JSON).header(new Header("index_name", "student"))
+				.log().all().body(st).post("/saveDocs").then().log().all().statusCode(200);
 	}
 	
 	@Title("This is test case will check /permissions/listAll api of security service")
